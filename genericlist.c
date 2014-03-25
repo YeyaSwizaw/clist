@@ -2,15 +2,8 @@
 
 listDefine(int);
 
-void listPrint(intList* l) {
-    intNode* n = l->start;
-
-    while(n != NULL) {
-        printf("%d ", n->data);
-        n = n->next;
-    }
-
-    printf("\n");
+void printInt(int i) {
+    printf("%d ", i);
 }
 
 int addFive(int num) {
@@ -28,19 +21,23 @@ bool lt(int a, int b) {
 int main(int argc, char* argv[]) {
     intList* list = intListNew();
     intListPushN(list, 5, 7, 3, 5, 156, 12);
-    listPrint(list);
+    intListFor(list, printInt);
 
     intList* l2 = intListMap(list, addFive);
-    listPrint(l2);
+    intListFor(l2, printInt);
+    printf("\n");
 
     intList* l3 = intListFilter(list, gtFive);
-    listPrint(l3);
+    intListFor(l3, printInt);
+    printf("\n");
 
     intList* l4 = intListJoin(list, l2);
-    listPrint(l4);
+    intListFor(l4, printInt);
+    printf("\n");
 
     intList* l5 = intListSort(l4, lt);
-    listPrint(l5);
+    intListFor(l5, printInt);
+    printf("\n");
 
     intListFree(list);
     intListFree(l2);

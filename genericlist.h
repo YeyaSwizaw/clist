@@ -49,6 +49,15 @@ void type##ListPushN(type##List* l, int n, ...) { \
     va_end(args); \
 } \
 \
+void type##ListFor(type##List* l, void(*f)(type)) { \
+    type##Node* n = l->start; \
+    \
+    while(n != NULL) { \
+        f(n->data); \
+        n = n->next; \
+    } \
+} \
+\
 type##List* type##ListMap(type##List* l, type(*f)(type)) { \
     type##List* ret = type##ListNew(); \
     type##Node* n = l->start; \
